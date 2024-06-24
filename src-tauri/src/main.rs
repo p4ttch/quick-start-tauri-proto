@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 // import Database from "tauri-plugin-sql-api";
 mod db;
+mod greet;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -33,7 +34,10 @@ fn main() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            // greetings::greet
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
